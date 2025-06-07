@@ -41,7 +41,9 @@
 #include <stdarg.h>
 
 #include <sys/stat.h> /* for stat(), maybe chmod() */
-
+#ifndef HAVE_LSTAT      /* ESP-IDF/newlib may lack lstat; fall back */
+#define lstat stat
+#endif
 #include "private/metadata.h"
 
 #include "FLAC/assert.h"
